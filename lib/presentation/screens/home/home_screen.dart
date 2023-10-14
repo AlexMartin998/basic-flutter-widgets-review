@@ -59,7 +59,19 @@ class _CustomListTile extends StatelessWidget {
       subtitle: Text(menuItem.subtitle),
 
       onTap: () {
-        // TODO: go to other page
+        // // // navigation: si tenemos Appbar, en auto coloca el btn de retroceder
+        
+        // // Navigator WITHOUT naming | push: hace 1 Stack de pantallas (1 sobre otra)
+        /* Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const ButtonsScreen(),
+          ),
+        ); */
+
+        // // named routes (limitations)
+        Navigator.pushNamed(context, menuItem.link);
+
+
       },
       
     );
