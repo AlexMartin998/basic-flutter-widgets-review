@@ -55,6 +55,16 @@ class _CardsView extends StatelessWidget {
             elevation: card['elevation']
           )),
 
+          ...cards.map((card) => _CardType3(
+            label: card['label'],
+            elevation: card['elevation']
+          )),
+
+          ...cards.map((card) => _CardType4(
+            label: card['label'],
+            elevation: card['elevation']
+          )),
+
 
           // dar margin para q se vea bien el ultimo
           const SizedBox(height: 24),
@@ -141,6 +151,92 @@ class _CardType2 extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+
+
+class _CardType3 extends StatelessWidget {
+  final String label;
+  final double elevation;
+
+  const _CardType3({
+    required this.label,
+    required this.elevation
+  });
+
+
+  @override
+  Widget build(BuildContext context) {
+    final color = Theme.of(context).colorScheme;
+
+    return Card( // card widget propio de flutter
+      elevation: elevation,
+      color: color.surfaceVariant,
+
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(10, 5, 10, 10),
+
+        child: Column(
+          children: [
+            Align( // alinear el widget
+              alignment: Alignment.topRight,
+              child: IconButton(onPressed: (){}, icon: const Icon(Icons.more_vert_outlined))
+            ),
+
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: Text('$label - filled'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+
+class _CardType4 extends StatelessWidget {
+  final String label;
+  final double elevation;
+
+  const _CardType4({
+    required this.label,
+    required this.elevation
+  });
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Card( // card widget propio de flutter
+      elevation: elevation,
+      // like ClipRRect para evitar q los childs se salgan del parent (rounded)
+      clipBehavior: Clip.hardEdge,
+
+      child: Stack( // 1 sobre otro en orden
+        children: [
+          Image.network(
+            'https://picsum.photos/id/${elevation.toInt()}/600/350',
+            height: 350,
+            fit: BoxFit.cover, // como se adapta la img
+          ),
+
+
+          Align( // alinear el widget
+            alignment: Alignment.topRight,
+            child: Container(
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20))
+              ),
+
+              child: IconButton(onPressed: (){}, icon: const Icon(Icons.more_vert_outlined)),
+            ),
+          ),
+        ],
       ),
     );
   }
