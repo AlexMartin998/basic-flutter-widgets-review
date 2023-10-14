@@ -83,7 +83,9 @@ class _ButtonsView extends StatelessWidget {
             ),
 
 
-            // TODO: custom button
+
+            // // custom button
+            const CustomButton(),
 
 
             IconButton(onPressed: (){}, icon: const Icon(Icons.app_registration)),
@@ -97,6 +99,37 @@ class _ButtonsView extends StatelessWidget {
             ),
 
           ],
+        ),
+      ),
+    );
+  }
+}
+
+
+
+// // // custom button
+class CustomButton extends StatelessWidget {
+  const CustomButton({super.key});
+
+
+  @override
+  Widget build(BuildContext context) {
+    final color = Theme.of(context).colorScheme;
+
+    return ClipRRect(  // permite tener 1 border radious
+      borderRadius: BorderRadius.circular(21),
+
+      // Material para tener acceso a muchas configs de material
+      child: Material(
+        color: color.primary,
+    
+        child: InkWell(  // como el GestureDetector, pero tiene el splash de material y demas colores
+          onTap: (){},
+    
+          child: const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: Text('Hello World', style: TextStyle(color: Colors.white)),
+          ),
         ),
       ),
     );
