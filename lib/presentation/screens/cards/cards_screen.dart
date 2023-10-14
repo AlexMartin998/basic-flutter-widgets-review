@@ -44,11 +44,20 @@ class _CardsView extends StatelessWidget {
       child: Column(
 
         children: [
-          // return iterable y aqui si podemos W con ellos
-          ...cards.map((card) => _CardType1(
+          // spread del iterable q retorna el map para q se aplane en el []
+          ...cards.map((card) => _CardType1(  // return iterable y aqui si podemos W con ellos
             label: card['label'],
             elevation: card['elevation']
           )),
+
+          ...cards.map((card) => _CardType2(
+            label: card['label'],
+            elevation: card['elevation']
+          )),
+
+
+          // dar margin para q se vea bien el ultimo
+          const SizedBox(height: 24),
         ],
       ),
     );
@@ -93,5 +102,48 @@ class _CardType1 extends StatelessWidget {
   }
 }
 
+
+
+class _CardType2 extends StatelessWidget {
+  final String label;
+  final double elevation;
+
+  const _CardType2({
+    required this.label,
+    required this.elevation
+  });
+
+
+  @override
+  Widget build(BuildContext context) {
+    final color = Theme.of(context).colorScheme;
+
+    return Card( // card widget propio de flutter
+      elevation: elevation,
+      shape: RoundedRectangleBorder(  // Style al border
+        side: BorderSide(color: color.outline),
+        borderRadius: const BorderRadius.all(Radius.circular(12)),
+      ),
+
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(10, 5, 10, 10),
+
+        child: Column(
+          children: [
+            Align( // alinear el widget
+              alignment: Alignment.topRight,
+              child: IconButton(onPressed: (){}, icon: const Icon(Icons.more_vert_outlined))
+            ),
+
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: Text('$label - outline'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
 
 
