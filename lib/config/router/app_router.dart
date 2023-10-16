@@ -2,7 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:widget_app/presentation/screens/screens.dart';
 
 
-// GoRouter configuration
+// GoRouter configuration: path works also on web
 final appRouter = GoRouter(
   initialLocation: '/',  // setea la ruta inicial
   
@@ -41,6 +41,12 @@ final appRouter = GoRouter(
       path: '/animated',
       name: AnimatedScreen.name,
       builder: (context, state) => const AnimatedScreen(),
+    ),
+
+    GoRoute(
+      path: '/ui-controls',
+      name: UiControlsScreen.name,
+      builder: (context, state) => const UiControlsScreen(),
     ),
   ],
 );
