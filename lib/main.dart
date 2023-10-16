@@ -18,7 +18,7 @@ class MainApp extends StatelessWidget {
 
       title: 'Flutter Widgets',
       debugShowCheckedModeBanner: false,
-      theme: AppTheme(selectedColor: 1).getTheme(),
+      theme: AppTheme(selectedColor: 0).getTheme(),
 
 
       /* // // routes: Using NAMED routes. No permite pasar Args
