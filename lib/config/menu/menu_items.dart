@@ -68,7 +68,7 @@ const appMenuItems = <MenuItem>[
     title: 'App tutorial',
     subtitle: 'Introduction',
     link: '/tutorial',
-    icon: Icons.library_books_sharp
+    icon: Icons.library_books_outlined
   ),
 
   MenuItem(
@@ -76,5 +76,12 @@ const appMenuItems = <MenuItem>[
     subtitle: 'Get infinite images',
     link: '/infinite',
     icon: Icons.list_alt_rounded
+  ),
+
+  MenuItem(
+    title: 'Theme Changer',
+    subtitle: 'Customize theme color',
+    link: '/theme-changer',
+    icon: Icons.color_lens_outlined
   ),
 ];
