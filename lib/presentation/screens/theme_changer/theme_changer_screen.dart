@@ -50,9 +50,15 @@ class _ThemeChangerView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // // without StateNotifier
     // pese a q es constante e inmutable, riverpod recomienda usar watch en este caso
+    // final List<Color> colors = ref.watch(colorListProvider);
+    // final int selectedColor = ref.watch(selectedColorProvider);
+
+
+    // // with StateNotifier: colors no lo gestiono en el provider
     final List<Color> colors = ref.watch(colorListProvider);
-    final int selectedColor = ref.watch(selectedColorProvider);
+    final int selectedColor = ref.watch(themeNotifierProvider).selectedColor;
 
 
     return ListView.builder(
@@ -69,10 +75,12 @@ class _ThemeChangerView extends ConsumerWidget {
           value: index,
           groupValue: selectedColor,
           onChanged: (value) {
+            // // without StateNotifier
             // upd selected color state provider
-            ref.read(selectedColorProvider.notifier).state = value!;
+            // ref.read(selectedColorProvider.notifier).state = value!;
 
-            // notify change to re-render and upd state
+            // // with StateNotifier
+            ref.read(themeNotifierProvider.notifier).changeColorIndex(index);
           }
         );
       },
