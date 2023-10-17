@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:widget_app/config/menu/menu_items.dart';
+import 'package:widget_app/presentation/widgets/side_menu.dart';
 
 
 class HomeScreen extends StatelessWidget {
@@ -12,13 +13,21 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // // como este Scaffold va a esta amarrado directamente al SideMenu se lo envio directamente como param
+    // en otros casos podriamos llevarlo a 1 gestor de estado, service, etc.
+    final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
 
     return Scaffold(
+      key: scaffoldKey, // tiene toda la ref a este scaffold
+
       appBar: AppBar(
         title: const Text('Flutter + Material 3'),
       ),
 
       body: const _HomeView(),
+
+      // // menu lateral
+      drawer: SideMenu(scaffoldKey: scaffoldKey),// key para cerrar el drawer
     );
   }
 }

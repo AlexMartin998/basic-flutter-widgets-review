@@ -14,7 +14,7 @@ class UiControlsScreen extends StatelessWidget {
         title: const Text('UI Controls'),
       ),
 
-      body: _UiControlsView(),
+      body: const _UiControlsView(),
     );
   }
 }
