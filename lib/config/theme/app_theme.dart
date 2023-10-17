@@ -31,4 +31,20 @@ class AppTheme {
       centerTitle: false
     )
   );
+
+
+
+
+  // // riverpod - state notifier: Para mantener las props como final retornamos 1 instancia de classe q nos permita mutar el state basado en el state anterior
+
+  // mantener state inmutable. Si cambia algo en el state, Creamos 1 nuevo state basado en el anterior <- esencia del copyWith() muy usado en la vida real
+  AppTheme copyWith({
+    int? selectedColor,
+    bool? isDarkMode
+  }) => AppTheme(
+    // como es opt, si no me lo envia uso el q tengo en la class
+    selectedColor: selectedColor ?? this.selectedColor,
+    isDarkMode: isDarkMode ?? this.isDarkMode
+  );
+
 }

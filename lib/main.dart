@@ -20,9 +20,13 @@ class MainApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // Riverpod
-    final bool isDarkmode = ref.watch(isDarkmodePovider);
-    final int selectedColor = ref.watch(selectedColorProvider);
+    // // // Riverpod
+    // // without StateNotifier
+    // final bool isDarkmode = ref.watch(isDarkmodePovider);
+    // final int selectedColor = ref.watch(selectedColorProvider);
+
+    // // with StateNotifier
+    final AppTheme appTheme = ref.watch(themeNotifierProvider);
 
 
     // // routing with   `go_router`:   .router()
@@ -32,7 +36,11 @@ class MainApp extends ConsumerWidget {
       title: 'Flutter Widgets',
       debugShowCheckedModeBanner: false,
 
-      theme: AppTheme(selectedColor: selectedColor, isDarkMode: isDarkmode).getTheme(),
+      // // without StateNotifier
+      // theme: AppTheme(selectedColor: selectedColor, isDarkMode: isDarkmode).getTheme(),
+
+      // // with StateNotifier
+      theme: appTheme.getTheme(),
 
       /* // // routes: Using NAMED routes. No permite pasar Args
       routes: {
